@@ -1,7 +1,3 @@
-# portfolio
-This is my portfolio. In this portfolio I have used the next framework of react.
-also I have used the chadcn library which is an amezing library for building ui components
-
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
