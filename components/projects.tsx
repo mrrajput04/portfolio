@@ -58,7 +58,7 @@ export default function Projects() {
                 <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, techIndex) => (
-                    <Badge key={techIndex} variant="secondary">
+                    <Badge key={techIndex} variant="outline" className="bg-primary/10">
                       {tech}
                     </Badge>
                   ))}
