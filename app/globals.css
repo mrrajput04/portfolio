@@ -72,3 +72,13 @@
   animation: blink 1s infinite;
 }
 
+@layer base {
+  .dark .bg-muted\/50 {
+    background-color: hsl(var(--muted) / 0.3);
+  }
+
+  .dark iframe {
+    filter: invert(0.85) hue-rotate(180deg);
+  }
+}
+

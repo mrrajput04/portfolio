@@ -41,7 +41,7 @@ export default function Skills() {
         <h2 className="text-3xl font-bold text-center mb-12">Skills</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="overflow-hidden border-t-4 border-t-primary">
+            <Card key={index} className="overflow-hidden border-t-4 border-t-primary hover:shadow-md transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="text-primary">{category.icon}</div>

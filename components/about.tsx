@@ -9,7 +9,7 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <div className="aspect-square relative rounded-full overflow-hidden max-w-[300px] mx-auto border-4 border-primary/20">
-              <img src="/placeholder.svg?height=300&width=300" alt="Divesh Kumar" className="object-cover" />
+              <img src="../mypic.jpg?height=300&width=300" alt="Divesh Kumar" className="object-cover" />
             </div>
           </div>
           <div className="space-y-6">
