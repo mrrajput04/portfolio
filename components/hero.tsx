@@ -42,7 +42,7 @@ export default function Hero() {
         </div>
         <div className="flex justify-center gap-4 sm:gap-6 pt-4 sm:pt-6">
           <Link
-            href="https://github.com"
+            href="https://github.com/mrrajput04"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-primary transition-colors"
@@ -51,7 +51,7 @@ export default function Hero() {
             <span className="sr-only">GitHub</span>
           </Link>
           <Link
-            href="https://linkedin.com"
+            href="https://linkedin.com/in/diveshkumar03"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-primary transition-colors"
