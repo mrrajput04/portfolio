@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   keywords: ["Backend Developer", "Node.js", "Express.js", "Nest.js", "MySQL", "MongoDB", "TypeScript", "JavaScript", "API Development"],
   authors: [{ name: "Divesh Kumar" }],
   creator: "Divesh Kumar",
+  icons: {
+    icon: "https://img.icons8.com/color/48/000000/backend-development.png",
+    shortcut: "https://img.icons8.com/color/48/000000/backend-development.png",
+    apple: "https://img.icons8.com/color/48/000000/backend-development.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -36,9 +41,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="https://img.icons8.com/bubbles/100/d.png" />
-      </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
