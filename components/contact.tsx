@@ -20,6 +20,7 @@ export default function Contact() {
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -29,6 +30,7 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setIsSuccess(false)
 
     // Simulate form submission
     setTimeout(() => {
@@ -43,6 +45,7 @@ export default function Contact() {
         message: "",
       })
       setIsSubmitting(false)
+      setIsSuccess(true)
     }, 1500)
   }
 
@@ -60,72 +63,92 @@ export default function Contact() {
               </CardDescription>
             </CardHeader>
             <CardContent className="p-4 sm:p-6 pt-2 sm:pt-3">
-              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-                <div className="grid gap-1.5 sm:gap-2">
-                  <Label htmlFor="name" className="text-xs sm:text-sm">
-                    Name
-                  </Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="text-sm"
-                  />
+              {isSuccess ? (
+                <div className="bg-green-100 dark:bg-green-900/20 p-4 rounded-md text-center">
+                  <h3 className="text-green-700 dark:text-green-400 font-medium text-sm sm:text-base mb-1">Message Sent!</h3>
+                  <p className="text-green-600 dark:text-green-500 text-xs sm:text-sm">
+                    Thank you for reaching out. I'll get back to you as soon as possible.
+                  </p>
                 </div>
-                <div className="grid gap-1.5 sm:gap-2">
-                  <Label htmlFor="email" className="text-xs sm:text-sm">
-                    Email
-                  </Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="text-sm"
-                  />
-                </div>
-                <div className="grid gap-1.5 sm:gap-2">
-                  <Label htmlFor="subject" className="text-xs sm:text-sm">
-                    Subject
-                  </Label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className="text-sm"
-                  />
-                </div>
-                <div className="grid gap-1.5 sm:gap-2">
-                  <Label htmlFor="message" className="text-xs sm:text-sm">
-                    Message
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    className="text-sm"
-                  />
-                </div>
-              </form>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+                  <div className="grid gap-1.5 sm:gap-2">
+                    <Label htmlFor="name" className="text-xs sm:text-sm">
+                      Name
+                    </Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="text-sm"
+                    />
+                  </div>
+                  <div className="grid gap-1.5 sm:gap-2">
+                    <Label htmlFor="email" className="text-xs sm:text-sm">
+                      Email
+                    </Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="text-sm"
+                    />
+                  </div>
+                  <div className="grid gap-1.5 sm:gap-2">
+                    <Label htmlFor="subject" className="text-xs sm:text-sm">
+                      Subject
+                    </Label>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="text-sm"
+                    />
+                  </div>
+                  <div className="grid gap-1.5 sm:gap-2">
+                    <Label htmlFor="message" className="text-xs sm:text-sm">
+                      Message
+                    </Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      className="text-sm"
+                    />
+                  </div>
+                </form>
+              )}
             </CardContent>
             <CardFooter className="p-4 sm:p-6 pt-2 sm:pt-3">
-              <Button
-                type="submit"
-                className="w-full text-xs sm:text-sm"
-                onClick={handleSubmit}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </Button>
+              {!isSuccess && (
+                <Button
+                  type="submit"
+                  className="w-full text-xs sm:text-sm"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </Button>
+              )}
+              {isSuccess && (
+                <Button 
+                  variant="outline" 
+                  className="w-full text-xs sm:text-sm"
+                  onClick={() => setIsSuccess(false)}
+                >
+                  Send Another Message
+                </Button>
+              )}
             </CardFooter>
           </Card>
 

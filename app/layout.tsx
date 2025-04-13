@@ -11,6 +11,22 @@ export const metadata: Metadata = {
   title: "Divesh Kumar - Backend Developer",
   description:
     "Portfolio website of Divesh Kumar, a Backend Developer specializing in Node.js, Express.js, and Nest.js",
+  keywords: ["Backend Developer", "Node.js", "Express.js", "Nest.js", "MySQL", "MongoDB", "TypeScript", "JavaScript", "API Development"],
+  authors: [{ name: "Divesh Kumar" }],
+  creator: "Divesh Kumar",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://divesh-kumar-dev.vercel.app",
+    title: "Divesh Kumar - Backend Developer",
+    description: "Backend Developer specializing in Node.js, Express.js and Nest.js",
+    siteName: "Divesh Kumar Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Divesh Kumar - Backend Developer",
+    description: "Backend Developer specializing in Node.js, Express.js and Nest.js",
+  },
 }
 
 export default function RootLayout({
@@ -20,9 +36,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* <head>
+      <head>
         <link rel="icon" href="https://img.icons8.com/bubbles/100/d.png" />
-      </head> */}
+      </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
