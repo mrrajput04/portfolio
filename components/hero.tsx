@@ -39,6 +39,9 @@ export default function Hero() {
           <Button variant="outline" asChild size="sm" className="sm:text-base sm:h-10">
             <Link href="#projects">View Projects</Link>
           </Button>
+          <Button variant="secondary" asChild size="sm" className="sm:text-base sm:h-10">
+            <a href="https://drive.google.com/file/d/1oduxkHuFjOcFXYiXm1sm2qMDv_bJbisn/view?usp=sharing" download>Download CV</a>
+          </Button>
         </div>
         <div className="flex justify-center gap-4 sm:gap-6 pt-4 sm:pt-6">
           <Link

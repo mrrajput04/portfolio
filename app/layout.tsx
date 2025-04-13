@@ -26,11 +26,20 @@ export const metadata: Metadata = {
     title: "Divesh Kumar - Backend Developer",
     description: "Backend Developer specializing in Node.js, Express.js and Nest.js",
     siteName: "Divesh Kumar Portfolio",
+    images: [
+      {
+        url: 'https://divesh-kumar-dev.vercel.app/opengraph-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Divesh Kumar - Backend Developer',
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Divesh Kumar - Backend Developer",
     description: "Backend Developer specializing in Node.js, Express.js and Nest.js",
+    images: ['https://divesh-kumar-dev.vercel.app/opengraph-image.jpg'],
   },
 }
 
@@ -41,7 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           {children}
