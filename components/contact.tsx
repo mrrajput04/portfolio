@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -21,6 +21,34 @@ export default function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -50,12 +78,14 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-12 sm:py-16 px-4 md:px-6 bg-muted/50">
+    <section id="contact" className="py-12 sm:py-16 px-4 md:px-6 bg-muted/50" ref={sectionRef}>
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">Contact Me</h2>
+        <h2 className={`text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+          Contact Me
+        </h2>
 
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
-          <Card>
+          <Card className={`transform transition duration-500 hover:shadow-lg ${isVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
             <CardHeader className="p-4 sm:p-6 pb-2 sm:pb-3">
               <CardTitle className="text-lg sm:text-xl">Get In Touch</CardTitle>
               <CardDescription className="text-xs sm:text-sm">
@@ -64,7 +94,7 @@ export default function Contact() {
             </CardHeader>
             <CardContent className="p-4 sm:p-6 pt-2 sm:pt-3">
               {isSuccess ? (
-                <div className="bg-green-100 dark:bg-green-900/20 p-4 rounded-md text-center">
+                <div className="bg-green-100 dark:bg-green-900/20 p-4 rounded-md text-center animate-scale-in">
                   <h3 className="text-green-700 dark:text-green-400 font-medium text-sm sm:text-base mb-1">Message Sent!</h3>
                   <p className="text-green-600 dark:text-green-500 text-xs sm:text-sm">
                     Thank you for reaching out. I'll get back to you as soon as possible.
@@ -82,7 +112,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="text-sm"
+                      className="text-sm focus:ring-2 focus:ring-primary/20 transition-shadow"
                     />
                   </div>
                   <div className="grid gap-1.5 sm:gap-2">
@@ -96,7 +126,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="text-sm"
+                      className="text-sm focus:ring-2 focus:ring-primary/20 transition-shadow"
                     />
                   </div>
                   <div className="grid gap-1.5 sm:gap-2">
@@ -109,7 +139,7 @@ export default function Contact() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="text-sm"
+                      className="text-sm focus:ring-2 focus:ring-primary/20 transition-shadow"
                     />
                   </div>
                   <div className="grid gap-1.5 sm:gap-2">
@@ -123,7 +153,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="text-sm"
+                      className="text-sm focus:ring-2 focus:ring-primary/20 transition-shadow"
                     />
                   </div>
                 </form>
@@ -133,7 +163,7 @@ export default function Contact() {
               {!isSuccess && (
                 <Button
                   type="submit"
-                  className="w-full text-xs sm:text-sm"
+                  className="w-full text-xs sm:text-sm transition-all hover:shadow-md hover:shadow-primary/10"
                   onClick={handleSubmit}
                   disabled={isSubmitting}
                 >
@@ -153,7 +183,7 @@ export default function Contact() {
               {isSuccess && (
                 <Button 
                   variant="outline" 
-                  className="w-full text-xs sm:text-sm"
+                  className="w-full text-xs sm:text-sm animate-scale-in"
                   onClick={() => setIsSuccess(false)}
                 >
                   Send Another Message
@@ -162,10 +192,10 @@ export default function Contact() {
             </CardFooter>
           </Card>
 
-          <div className="flex flex-col justify-center gap-4 sm:gap-6">
-            <Card>
+          <div className={`flex flex-col justify-center gap-4 sm:gap-6 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: '0.5s' }}>
+            <Card className="transform transition-all duration-500 hover:shadow-lg">
               <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-                <div className="flex items-center gap-3 sm:gap-4">
+                <div className="flex items-center gap-3 sm:gap-4 hover:translate-x-1 transition-transform duration-300">
                   <div className="bg-primary/10 p-2 sm:p-3 rounded-full">
                     <MapPin className="w-4 h-4 sm:w-6 sm:h-6 text-primary" />
                   </div>
@@ -175,29 +205,37 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 sm:gap-4">
+                <div className="flex items-center gap-3 sm:gap-4 hover:translate-x-1 transition-transform duration-300">
                   <div className="bg-primary/10 p-2 sm:p-3 rounded-full">
                     <Mail className="w-4 h-4 sm:w-6 sm:h-6 text-primary" />
                   </div>
                   <div>
                     <h3 className="text-sm sm:text-base font-medium">Email</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground break-all">rajpootdivesh5@gmail.com</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground break-all">
+                      <a href="mailto:rajpootdivesh5@gmail.com" className="hover:text-primary transition-colors">
+                        rajpootdivesh5@gmail.com
+                      </a>
+                    </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 sm:gap-4">
+                <div className="flex items-center gap-3 sm:gap-4 hover:translate-x-1 transition-transform duration-300">
                   <div className="bg-primary/10 p-2 sm:p-3 rounded-full">
                     <Phone className="w-4 h-4 sm:w-6 sm:h-6 text-primary" />
                   </div>
                   <div>
                     <h3 className="text-sm sm:text-base font-medium">Phone</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground">+91 8477072098</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
+                      <a href="tel:+918477072098" className="hover:text-primary transition-colors">
+                        +91 8477072098
+                      </a>
+                    </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <div className="mt-2 sm:mt-4">
+            <div className="mt-2 sm:mt-4 overflow-hidden rounded-lg transform transition-all duration-500 hover:shadow-lg">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224356.9006163!2d77.2035977!3d28.5269961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a43173357b%3A0x37ffce30c87cc03f!2sNoida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1710159123456!5m2!1sen!2sin"
                 width="100%"
@@ -206,7 +244,7 @@ export default function Contact() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="sm:h-[250px]"
+                className="sm:h-[250px] transition-transform duration-700 hover:scale-105 origin-center"
               ></iframe>
             </div>
           </div>

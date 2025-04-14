@@ -1,9 +1,41 @@
+"use client"
+
+import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink } from "lucide-react"
 
 export default function Projects() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const projects = [
     {
       title: "Pratham Digital",
@@ -40,19 +72,28 @@ export default function Projects() {
   ]
 
   return (
-    <section id="projects" className="py-12 sm:py-16 px-4 md:px-6">
+    <section id="projects" className="py-12 sm:py-16 px-4 md:px-6" ref={sectionRef}>
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">Projects</h2>
+        <h2 className={`text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+          Projects
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {projects.map((project, index) => (
-            <Card key={index} className="flex flex-col h-full">
-              <CardHeader className="p-4 sm:p-6 pb-2 sm:pb-3">
+            <Card 
+              key={index} 
+              className={`flex flex-col h-full transform transition duration-500 hover:shadow-lg hover:-translate-y-1 ${
+                isVisible ? 'animate-slide-up' : 'opacity-0'
+              }`}
+              style={{ animationDelay: `${0.3 + index * 0.15}s` }}
+            >
+              <CardHeader className="p-4 sm:p-6 pb-2 sm:pb-3 relative overflow-hidden">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
-                  <CardTitle className="text-lg sm:text-xl">{project.title}</CardTitle>
-                  <Badge className="w-fit">{project.client}</Badge>
+                  <CardTitle className="text-lg sm:text-xl relative z-10">{project.title}</CardTitle>
+                  <Badge className="w-fit relative z-10">{project.client}</Badge>
                 </div>
-                <CardDescription className="text-xs sm:text-sm">{project.period}</CardDescription>
+                <CardDescription className="text-xs sm:text-sm relative z-10">{project.period}</CardDescription>
+                <div className="absolute inset-0 bg-primary/5 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
               </CardHeader>
               <CardContent className="flex-grow p-4 sm:p-6 pt-2 sm:pt-3">
                 <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">{project.description}</p>
@@ -60,7 +101,11 @@ export default function Projects() {
                   <span className="text-xs text-primary font-medium">Technologies:</span>
                   <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-1.5">
                     {project.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="outline" className="bg-primary/10 text-xs">
+                      <Badge 
+                        key={techIndex} 
+                        variant="outline" 
+                        className="bg-primary/10 text-xs transition-all hover:bg-primary/20 cursor-default"
+                      >
                         {tech}
                       </Badge>
                     ))}
@@ -68,7 +113,11 @@ export default function Projects() {
                 </div>
               </CardContent>
               <CardFooter className="p-4 sm:p-6 pt-2 sm:pt-3">
-                <Button variant="ghost" size="sm" className="ml-auto text-xs sm:text-sm">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="ml-auto text-xs sm:text-sm hover:scale-105 transition-transform"
+                >
                   <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
                   View Details
                 </Button>
