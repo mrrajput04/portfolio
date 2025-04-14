@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   keywords: ["Backend Developer", "Node.js", "Express.js", "Nest.js", "MySQL", "MongoDB", "TypeScript", "JavaScript", "API Development"],
   authors: [{ name: "Divesh Kumar" }],
   creator: "Divesh Kumar",
+  metadataBase: new URL('https://diveshkumar.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: "https://img.icons8.com/color/48/000000/backend-development.png",
     shortcut: "https://img.icons8.com/color/48/000000/backend-development.png",
