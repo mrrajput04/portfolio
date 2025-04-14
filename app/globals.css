@@ -93,22 +93,22 @@
 
 @keyframes slideUp {
   from {
-    transform: translateY(20px);
+    transform: translate3d(0, 20px, 0);
     opacity: 0;
   }
   to {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 }
 
 @keyframes scaleIn {
   from {
-    transform: scale(0.9);
+    transform: scale3d(0.9, 0.9, 1);
     opacity: 0;
   }
   to {
-    transform: scale(1);
+    transform: scale3d(1, 1, 1);
     opacity: 1;
   }
 }
@@ -126,15 +126,22 @@
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.8s ease-in-out forwards;
+  animation: fadeIn 0.6s ease-in-out forwards;
+  will-change: opacity;
 }
 
 .animate-slide-up {
-  animation: slideUp 0.8s ease-out forwards;
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .animate-scale-in {
-  animation: scaleIn 0.5s ease-out forwards;
+  animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .animate-pulse-subtle {
@@ -143,12 +150,218 @@
 
 .stagger-animation > * {
   opacity: 0;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
-.stagger-animation > *:nth-child(1) { animation: slideUp 0.6s 0.1s ease-out forwards; }
-.stagger-animation > *:nth-child(2) { animation: slideUp 0.6s 0.2s ease-out forwards; }
-.stagger-animation > *:nth-child(3) { animation: slideUp 0.6s 0.3s ease-out forwards; }
-.stagger-animation > *:nth-child(4) { animation: slideUp 0.6s 0.4s ease-out forwards; }
-.stagger-animation > *:nth-child(5) { animation: slideUp 0.6s 0.5s ease-out forwards; }
-.stagger-animation > *:nth-child(6) { animation: slideUp 0.6s 0.6s ease-out forwards; }
+.stagger-animation > *:nth-child(1) { animation: slideUp 0.4s 0.05s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.stagger-animation > *:nth-child(2) { animation: slideUp 0.4s 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.stagger-animation > *:nth-child(3) { animation: slideUp 0.4s 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.stagger-animation > *:nth-child(4) { animation: slideUp 0.4s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.stagger-animation > *:nth-child(5) { animation: slideUp 0.4s 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.stagger-animation > *:nth-child(6) { animation: slideUp 0.4s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+/* Additional animation keyframes */
+
+@keyframes revealFromLeft {
+  from {
+    transform: translate3d(-40px, 0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes revealFromRight {
+  from {
+    transform: translate3d(40px, 0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes spotlight {
+  0% {
+    box-shadow: 0 0 0 0px rgba(var(--primary), 0.05);
+  }
+  100% {
+    box-shadow: 0 0 0 25px rgba(var(--primary), 0);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--primary), 0.3),
+                0 0 0 0.5em rgba(var(--primary), 0.3),
+                0 0 0 1em rgba(var(--primary), 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 0.5em rgba(var(--primary), 0.3),
+                0 0 0 1em rgba(var(--primary), 0.3),
+                0 0 0 1.5em rgba(var(--primary), 0);
+  }
+}
+
+/* Additional animation classes */
+.animate-reveal-left {
+  animation: revealFromLeft 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.animate-reveal-right {
+  animation: revealFromRight 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.animate-spotlight {
+  animation: spotlight 2s infinite ease-out;
+}
+
+.animate-ripple {
+  animation: ripple 1.5s linear infinite;
+}
+
+/* This will create a smooth magnetic hover effect with JS */
+.magnetic-element {
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Add new scroll-based animation keyframes */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInStagger {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale3d(0.8, 0.8, 1);
+  }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* Scroll animation utility classes */
+.scroll-animation {
+  opacity: 0;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-animation.fade-up {
+  transform: translate3d(0, 30px, 0);
+}
+
+.scroll-animation.fade-down {
+  transform: translate3d(0, -30px, 0);
+}
+
+.scroll-animation.slide-in {
+  transform: translate3d(0, 50px, 0);
+}
+
+.scroll-animation.scale-up {
+  transform: scale3d(0.8, 0.8, 1);
+}
+
+.scroll-animation.fade-in {
+  opacity: 0;
+}
+
+.scroll-animation.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+/* Staggered animation */
+.stagger-group [data-stagger] {
+  opacity: 0;
+  transform: translate3d(0, 40px, 0);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.stagger-group.visible [data-stagger="1"] { transition-delay: 0.1s; }
+.stagger-group.visible [data-stagger="2"] { transition-delay: 0.2s; }
+.stagger-group.visible [data-stagger="3"] { transition-delay: 0.3s; }
+.stagger-group.visible [data-stagger="4"] { transition-delay: 0.4s; }
+.stagger-group.visible [data-stagger="5"] { transition-delay: 0.5s; }
+.stagger-group.visible [data-stagger="6"] { transition-delay: 0.6s; }
+
+.stagger-group.visible [data-stagger] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
 

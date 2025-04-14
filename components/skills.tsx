@@ -1,6 +1,5 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Code,
@@ -10,6 +9,7 @@ import {
   Terminal,
   Layers,
 } from "lucide-react";
+import ScrollAnimation, { StaggerGroup, StaggerItem } from "@/components/ui/scroll-animation";
 
 export default function Skills() {
   const skillCategories = [
@@ -45,73 +45,41 @@ export default function Skills() {
     },
   ];
 
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <section id="skills" className="py-12 sm:py-16 px-4 md:px-6" ref={sectionRef}>
+    <section id="skills" className="py-12 sm:py-16 px-4 md:px-6">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">
-          Skills
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <ScrollAnimation type="fade-up" className="mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center">
+            Skills
+          </h2>
+        </ScrollAnimation>
+        
+        <StaggerGroup threshold={0.1} rootMargin="0px 0px -50px 0px" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {skillCategories.map((category, index) => (
-            <Card
-              key={index}
-              className={`overflow-hidden border-t-4 border-t-primary hover:shadow-md transition-all duration-500 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-              style={{ 
-                transitionDelay: `${index * 100}ms`
-              }}
-            >
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                  <div className="text-primary">{category.icon}</div>
-                  <h3 className="text-lg sm:text-xl font-semibold">
-                    {category.title}
-                  </h3>
-                </div>
-                <ul className="space-y-1 sm:space-y-2">
-                  {category.skills.map((skill, skillIndex) => (
-                    <li key={skillIndex} className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary" />
-                      <span className="text-sm sm:text-base">{skill}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+            <StaggerItem key={index} index={index + 1}>
+              <Card
+                className="overflow-hidden border-t-4 border-t-primary hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+              >
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                    <div className="text-primary">{category.icon}</div>
+                    <h3 className="text-lg sm:text-xl font-semibold">
+                      {category.title}
+                    </h3>
+                  </div>
+                  <ul className="space-y-1 sm:space-y-2">
+                    {category.skills.map((skill, skillIndex) => (
+                      <li key={skillIndex} className="flex items-center gap-2 transition-all duration-300 hover:translate-x-1">
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary" />
+                        <span className="text-sm sm:text-base">{skill}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );
