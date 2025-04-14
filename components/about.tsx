@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef, useCallback } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MapPin, Mail, Phone, User } from "lucide-react"
+import ScrollAnimation from "@/components/ui/scroll-animation"
+import Image from "next/image"
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false);
@@ -82,15 +84,17 @@ export default function About() {
           >
             <div 
               ref={imgRef}
-              className={`aspect-square relative rounded-full overflow-hidden max-w-[200px] sm:max-w-[300px] border-4 border-primary/20 shadow-lg ${isVisible ? 'animate-float' : 'opacity-0'}`} 
+              className={`aspect-square relative rounded-full overflow-hidden w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] border-4 border-primary/20 shadow-lg ${isVisible ? 'animate-float' : 'opacity-0'}`} 
               style={{ animationDelay: '0.4s', transform: 'translateZ(0)' }}
             >
               <span className="absolute inset-[-5px] rounded-full animate-ripple"></span>
-              <img 
+              <Image 
                 src="/mypic.jpg" 
                 alt="Divesh Kumar - Backend Developer" 
-                className="object-cover w-full h-full relative z-10"
-                loading="lazy"
+                className="object-cover relative z-10"
+                fill
+                sizes="(max-width: 640px) 180px, (max-width: 768px) 250px, 300px"
+                priority
               />
             </div>
           </div>

@@ -88,7 +88,10 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="text-sm focus:ring-2 focus:ring-primary/20 transition-shadow"
+                        aria-required="true"
+                        className="text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                        placeholder="Your name"
+                        aria-label="Your name"
                       />
                     </div>
                     <div className="grid gap-1.5 sm:gap-2">
@@ -102,7 +105,10 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="text-sm focus:ring-2 focus:ring-primary/20 transition-shadow"
+                        aria-required="true"
+                        className="text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                        placeholder="Your email address"
+                        aria-label="Your email address"
                       />
                     </div>
                     <div className="grid gap-1.5 sm:gap-2">
@@ -115,7 +121,10 @@ export default function Contact() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="text-sm focus:ring-2 focus:ring-primary/20 transition-shadow"
+                        aria-required="true"
+                        className="text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                        placeholder="Message subject"
+                        aria-label="Message subject"
                       />
                     </div>
                     <div className="grid gap-1.5 sm:gap-2">
@@ -129,7 +138,10 @@ export default function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className="text-sm focus:ring-2 focus:ring-primary/20 transition-shadow"
+                        aria-required="true"
+                        className="text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                        placeholder="Your message"
+                        aria-label="Your message"
                       />
                     </div>
                   </form>
@@ -139,13 +151,14 @@ export default function Contact() {
                 {!isSuccess && (
                   <Button
                     type="submit"
-                    className="w-full text-xs sm:text-sm transition-all hover:shadow-md hover:shadow-primary/10"
+                    className="w-full text-xs sm:text-sm transition-all hover:shadow-md hover:shadow-primary/10 focus:ring-2 focus:ring-primary/20 focus:outline-none"
                     onClick={handleSubmit}
                     disabled={isSubmitting}
+                    aria-label={isSubmitting ? "Sending message..." : "Send message"}
                   >
                     {isSubmitting ? (
                       <>
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-background" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-background" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
@@ -159,8 +172,9 @@ export default function Contact() {
                 {isSuccess && (
                   <Button 
                     variant="outline" 
-                    className="w-full text-xs sm:text-sm animate-scale-in"
+                    className="w-full text-xs sm:text-sm animate-scale-in focus:ring-2 focus:ring-primary/20 focus:outline-none"
                     onClick={() => setIsSuccess(false)}
+                    aria-label="Send another message"
                   >
                     Send Another Message
                   </Button>
@@ -177,7 +191,7 @@ export default function Contact() {
                     <StaggerItem index={1}>
                       <div className="flex items-center gap-3 sm:gap-4 hover:translate-x-1 transition-transform duration-300">
                         <div className="bg-primary/10 p-2 sm:p-3 rounded-full">
-                          <MapPin className="w-4 h-4 sm:w-6 sm:h-6 text-primary" />
+                          <MapPin className="w-4 h-4 sm:w-6 sm:h-6 text-primary" aria-hidden="true" />
                         </div>
                         <div>
                           <h3 className="text-sm sm:text-base font-medium">Location</h3>
@@ -189,12 +203,12 @@ export default function Contact() {
                     <StaggerItem index={2}>
                       <div className="flex items-center gap-3 sm:gap-4 hover:translate-x-1 transition-transform duration-300">
                         <div className="bg-primary/10 p-2 sm:p-3 rounded-full">
-                          <Mail className="w-4 h-4 sm:w-6 sm:h-6 text-primary" />
+                          <Mail className="w-4 h-4 sm:w-6 sm:h-6 text-primary" aria-hidden="true" />
                         </div>
                         <div>
                           <h3 className="text-sm sm:text-base font-medium">Email</h3>
                           <p className="text-xs sm:text-sm text-muted-foreground break-all">
-                            <a href="mailto:rajpootdivesh5@gmail.com" className="hover:text-primary transition-colors">
+                            <a href="mailto:rajpootdivesh5@gmail.com" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded" aria-label="Email me at rajpootdivesh5@gmail.com">
                               rajpootdivesh5@gmail.com
                             </a>
                           </p>
@@ -205,12 +219,12 @@ export default function Contact() {
                     <StaggerItem index={3}>
                       <div className="flex items-center gap-3 sm:gap-4 hover:translate-x-1 transition-transform duration-300">
                         <div className="bg-primary/10 p-2 sm:p-3 rounded-full">
-                          <Phone className="w-4 h-4 sm:w-6 sm:h-6 text-primary" />
+                          <Phone className="w-4 h-4 sm:w-6 sm:h-6 text-primary" aria-hidden="true" />
                         </div>
                         <div>
                           <h3 className="text-sm sm:text-base font-medium">Phone</h3>
                           <p className="text-xs sm:text-sm text-muted-foreground">
-                            <a href="tel:+918477072098" className="hover:text-primary transition-colors">
+                            <a href="tel:+918477072098" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded" aria-label="Call me at +91 8477072098">
                               +91 8477072098
                             </a>
                           </p>
@@ -232,6 +246,8 @@ export default function Contact() {
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     className="sm:h-[250px] transition-transform duration-700 hover:scale-105 origin-center"
+                    title="Map showing Noida, India"
+                    aria-label="Google Maps location of Noida, India"
                   ></iframe>
                 </div>
               </ScrollAnimation>
