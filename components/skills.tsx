@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useEffect, useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Code,
@@ -42,8 +45,37 @@ export default function Skills() {
     },
   ];
 
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section id="skills" className="py-12 sm:py-16 px-4 md:px-6">
+    <section id="skills" className="py-12 sm:py-16 px-4 md:px-6" ref={sectionRef}>
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">
           Skills
@@ -52,7 +84,14 @@ export default function Skills() {
           {skillCategories.map((category, index) => (
             <Card
               key={index}
-              className="overflow-hidden border-t-4 border-t-primary hover:shadow-md transition-shadow"
+              className={`overflow-hidden border-t-4 border-t-primary hover:shadow-md transition-all duration-500 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{ 
+                transitionDelay: `${index * 100}ms`
+              }}
             >
               <CardContent className="p-4 sm:p-6">
                 <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
