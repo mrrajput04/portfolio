@@ -35,7 +35,7 @@ export default function Projects() {
       period: "February 2023 – June 2023",
       description:
         "Designed and developed a high-performance betting platform using Node.js, Express.js, MongoDB, and WebSocket. The site effortlessly handles massive amounts of user data. This innovative platform provides a dynamic and engaging betting experience for users, all while ensuring efficient data management and real-time interactions. Focused on real-time data handling and scalability to manage large user bases.",
-      technologies: ["Node.js", "Express.js", "MongoDB", "WebSocket", "Git", "GitHub"],
+      technologies: ["Node.js", "Express.js", "MongoDB", "WebSocket", "Git"],
     },
   ]
 
@@ -56,12 +56,15 @@ export default function Projects() {
               </CardHeader>
               <CardContent className="flex-grow p-4 sm:p-6 pt-2 sm:pt-3">
                 <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {project.technologies.map((tech, techIndex) => (
-                    <Badge key={techIndex} variant="outline" className="bg-primary/10 text-xs">
-                      {tech}
-                    </Badge>
-                  ))}
+                <div className="mb-2">
+                  <span className="text-xs text-primary font-medium">Technologies:</span>
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-1.5">
+                    {project.technologies.map((tech, techIndex) => (
+                      <Badge key={techIndex} variant="outline" className="bg-primary/10 text-xs">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
               </CardContent>
               <CardFooter className="p-4 sm:p-6 pt-2 sm:pt-3">
