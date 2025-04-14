@@ -14,7 +14,8 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    domains: [],
+    unoptimized: false,
   },
   experimental: {
     webpackBuildWorker: true,
@@ -23,26 +24,31 @@ const nextConfig = {
   },
 }
 
-mergeConfig(nextConfig, userConfig)
-
-function mergeConfig(nextConfig, userConfig) {
-  if (!userConfig) {
-    return
+function mergeConfig(baseConfig, userConfig) {
+  if (!userConfig || !userConfig.default) {
+    return baseConfig
   }
 
-  for (const key in userConfig) {
-    if (
-      typeof nextConfig[key] === 'object' &&
-      !Array.isArray(nextConfig[key])
-    ) {
-      nextConfig[key] = {
-        ...nextConfig[key],
-        ...userConfig[key],
-      }
-    } else {
-      nextConfig[key] = userConfig[key]
+  const merged = { ...baseConfig }
+  const userConfigObj = userConfig.default
+
+  // Deep merge for images
+  if (userConfigObj.images) {
+    merged.images = { 
+      ...merged.images, 
+      ...userConfigObj.images
     }
   }
+
+  // Merge experimental features
+  if (userConfigObj.experimental) {
+    merged.experimental = { 
+      ...merged.experimental, 
+      ...userConfigObj.experimental
+    }
+  }
+
+  return merged
 }
 
-export default nextConfig
+export default mergeConfig(nextConfig, userConfig)

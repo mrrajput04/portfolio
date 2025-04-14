@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Divesh Kumar - Backend Developer",
   description:
-    "Portfolio website of Divesh Kumar, a Backend Developer specializing in Node.js, Express.js, and Nest.js",
-  keywords: ["Backend Developer", "Node.js", "Express.js", "Nest.js", "MySQL", "MongoDB", "TypeScript", "JavaScript", "API Development"],
+    "Portfolio of Divesh Kumar, a skilled Backend Developer specializing in Node.js, Express.js, and Nest.js with experience in building scalable applications",
+  keywords: ["Backend Developer", "Node.js", "Express.js", "Nest.js", "MySQL", "MongoDB", "TypeScript", "JavaScript", "API Development", "Full Stack", "Web Development", "Software Engineer"],
   authors: [{ name: "Divesh Kumar" }],
   creator: "Divesh Kumar",
   metadataBase: new URL('https://diveshkumar.vercel.app'),
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://divesh-kumar-dev.vercel.app",
-    title: "Divesh Kumar - Backend Developer",
-    description: "Backend Developer specializing in Node.js, Express.js and Nest.js",
+    title: "Divesh Kumar - Backend Developer Portfolio",
+    description: "Experienced Backend Developer specializing in Node.js, Express.js and Nest.js with a passion for building high-quality software solutions",
     siteName: "Divesh Kumar Portfolio",
     images: [
       {
@@ -45,6 +45,8 @@ export const metadata: Metadata = {
     description: "Backend Developer specializing in Node.js, Express.js and Nest.js",
     images: ['https://divesh-kumar-dev.vercel.app/opengraph-image.jpg'],
   },
+  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
+  robots: "index, follow",
 }
 
 export default function RootLayout({
