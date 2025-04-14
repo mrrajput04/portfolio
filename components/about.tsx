@@ -1,27 +1,31 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MapPin, Mail, Phone, User } from "lucide-react"
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false);
+  const [headerText, setHeaderText] = useState("");
+  const fullHeaderText = "About Me";
   const sectionRef = useRef(null);
+  const animationFrameId = useRef<number | null>(null);
+  const typewriterTimeoutId = useRef<NodeJS.Timeout | null>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
+
+  // Memoize the observer callback
+  const observerCallback = useCallback(([entry]: IntersectionObserverEntry[]) => {
+    if (entry.isIntersecting) {
+      setIsVisible(true);
+    }
+  }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2,
-      }
-    );
+    const observer = new IntersectionObserver(observerCallback, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2,
+    });
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
@@ -32,25 +36,70 @@ export default function About() {
         observer.unobserve(sectionRef.current);
       }
     };
-  }, []);
+  }, [observerCallback]);
+
+  // Optimize the typewriter effect
+  useEffect(() => {
+    const handleTypewriter = () => {
+      if (isVisible && headerText.length < fullHeaderText.length) {
+        if (typewriterTimeoutId.current) {
+          clearTimeout(typewriterTimeoutId.current);
+        }
+        
+        typewriterTimeoutId.current = setTimeout(() => {
+          animationFrameId.current = requestAnimationFrame(() => {
+            setHeaderText(fullHeaderText.slice(0, headerText.length + 1));
+          });
+        }, 100);
+      }
+    };
+    
+    handleTypewriter();
+    
+    return () => {
+      if (typewriterTimeoutId.current) {
+        clearTimeout(typewriterTimeoutId.current);
+      }
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
+    };
+  }, [isVisible, headerText, fullHeaderText]);
 
   return (
     <section id="about" className="py-12 sm:py-16 px-4 md:px-6 bg-muted/50" ref={sectionRef}>
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">About Me</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">
+          {headerText}
+          {headerText.length < fullHeaderText.length && (
+            <span className="animate-blink">|</span>
+          )}
+        </h2>
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
-          <div className={`flex justify-center ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-            <div className={`aspect-square relative rounded-full overflow-hidden max-w-[200px] sm:max-w-[300px] border-4 border-primary/20 shadow-lg ${isVisible ? 'animate-scale-in animate-pulse-subtle' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
+          <div 
+            className={`flex justify-center ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} 
+            style={{ animationDelay: '0.2s', transform: 'translateZ(0)' }}
+          >
+            <div 
+              ref={imgRef}
+              className={`aspect-square relative rounded-full overflow-hidden max-w-[200px] sm:max-w-[300px] border-4 border-primary/20 shadow-lg ${isVisible ? 'animate-float' : 'opacity-0'}`} 
+              style={{ animationDelay: '0.4s', transform: 'translateZ(0)' }}
+            >
+              <span className="absolute inset-[-5px] rounded-full animate-ripple"></span>
               <img 
                 src="/mypic.jpg" 
                 alt="Divesh Kumar - Backend Developer" 
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full relative z-10"
                 loading="lazy"
               />
             </div>
           </div>
-          <div className={`space-y-6 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: '0.6s' }}>
-            <Card className="transform transition-all duration-500 hover:shadow-lg">
+          <div 
+            className={`space-y-6 ${isVisible ? 'animate-reveal-right' : 'opacity-0'}`} 
+            style={{ animationDelay: '0.4s', transform: 'translateZ(0)' }}
+          >
+            <Card className="transform transition-all duration-500 hover:shadow-lg transform-gpu overflow-hidden relative">
+              <span className="absolute h-full w-1 bg-primary/20 left-0 top-0"></span>
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
                   <User className="w-5 h-5 text-primary" />
@@ -69,23 +118,32 @@ export default function About() {
                   technologies.
                 </p>
                 <dl className="mt-6 space-y-3">
-                  <div className="flex items-center gap-3 text-muted-foreground transform transition hover:translate-x-1 duration-300">
+                  <div className="flex items-center gap-3 text-muted-foreground transform transition hover:translate-x-1 duration-300 transform-gpu">
                     <dt className="sr-only">Location</dt>
-                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                    <div className="relative">
+                      <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                      <span className="absolute inset-0 animate-spotlight opacity-0 hover:opacity-100 rounded-full"></span>
+                    </div>
                     <dd className="text-sm sm:text-base">Noida, India</dd>
                   </div>
-                  <div className="flex items-center gap-3 text-muted-foreground transform transition hover:translate-x-1 duration-300">
+                  <div className="flex items-center gap-3 text-muted-foreground transform transition hover:translate-x-1 duration-300 transform-gpu">
                     <dt className="sr-only">Email</dt>
-                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                    <div className="relative">
+                      <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                      <span className="absolute inset-0 animate-spotlight opacity-0 hover:opacity-100 rounded-full"></span>
+                    </div>
                     <dd className="text-sm sm:text-base break-all">
                       <a href="mailto:rajpootdivesh5@gmail.com" className="hover:text-primary transition-colors">
                         rajpootdivesh5@gmail.com
                       </a>
                     </dd>
                   </div>
-                  <div className="flex items-center gap-3 text-muted-foreground transform transition hover:translate-x-1 duration-300">
+                  <div className="flex items-center gap-3 text-muted-foreground transform transition hover:translate-x-1 duration-300 transform-gpu">
                     <dt className="sr-only">Phone</dt>
-                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                    <div className="relative">
+                      <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                      <span className="absolute inset-0 animate-spotlight opacity-0 hover:opacity-100 rounded-full"></span>
+                    </div>
                     <dd className="text-sm sm:text-base">
                       <a href="tel:+918477072098" className="hover:text-primary transition-colors">
                         +91 8477072098
