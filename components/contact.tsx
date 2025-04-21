@@ -52,6 +52,19 @@ export default function Contact() {
   const [lastSubmissionTime, setLastSubmissionTime] = useState<number>(0)
   const formRef = useRef<HTMLFormElement>(null)
 
+  // Add loading state for map
+  const [isMapLoading, setIsMapLoading] = useState(true)
+
+  // Add progress indicator
+  const [formProgress, setFormProgress] = useState(0)
+
+  // Calculate form progress
+  useEffect(() => {
+    const totalFields = Object.keys(formData).length
+    const filledFields = Object.values(formData).filter(value => value.trim() !== '').length
+    setFormProgress((filledFields / totalFields) * 100)
+  }, [formData])
+
   // Validate form field
   const validateField = (name: string, value: string): string => {
     const rules = validationRules[name as keyof typeof validationRules]
@@ -217,6 +230,17 @@ export default function Contact() {
                 <CardDescription className="text-xs sm:text-sm">
                   Fill out the form and I'll get back to you as soon as possible.
                 </CardDescription>
+                {/* Add progress bar */}
+                <div className="mt-2 h-1 bg-muted rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-primary transition-all duration-300"
+                    style={{ width: `${formProgress}%` }}
+                    role="progressbar"
+                    aria-valuenow={formProgress}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                  />
+                </div>
               </CardHeader>
               <CardContent className="p-4 sm:p-6 pt-2 sm:pt-3">
                 {isSuccess ? (
@@ -227,7 +251,12 @@ export default function Contact() {
                     </p>
                   </div>
                 ) : (
-                  <form ref={formRef} onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+                  <form 
+                    ref={formRef} 
+                    onSubmit={handleSubmit} 
+                    className="space-y-3 sm:space-y-4"
+                    aria-label="Contact form"
+                  >
                     <div className="grid gap-1.5 sm:gap-2">
                       <Label htmlFor="name" className="text-xs sm:text-sm">
                         Name
@@ -239,16 +268,16 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         aria-required="true"
+                        aria-label="Your name"
+                        aria-invalid={!!errors.name}
+                        aria-describedby={errors.name ? 'name-error' : undefined}
                         className={`text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                           errors.name ? 'border-red-500' : ''
                         }`}
                         placeholder="Your name"
-                        aria-label="Your name"
-                        aria-invalid={!!errors.name}
-                        aria-describedby={errors.name ? 'name-error' : undefined}
                       />
                       {errors.name && (
-                        <p id="name-error" className="text-red-500 text-xs mt-1">
+                        <p id="name-error" className="text-red-500 text-xs mt-1" role="alert">
                           {errors.name}
                         </p>
                       )}
@@ -265,16 +294,16 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         aria-required="true"
+                        aria-label="Your email address"
+                        aria-invalid={!!errors.email}
+                        aria-describedby={errors.email ? 'email-error' : undefined}
                         className={`text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                           errors.email ? 'border-red-500' : ''
                         }`}
                         placeholder="Your email address"
-                        aria-label="Your email address"
-                        aria-invalid={!!errors.email}
-                        aria-describedby={errors.email ? 'email-error' : undefined}
                       />
                       {errors.email && (
-                        <p id="email-error" className="text-red-500 text-xs mt-1">
+                        <p id="email-error" className="text-red-500 text-xs mt-1" role="alert">
                           {errors.email}
                         </p>
                       )}
@@ -290,16 +319,16 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         aria-required="true"
+                        aria-label="Message subject"
+                        aria-invalid={!!errors.subject}
+                        aria-describedby={errors.subject ? 'subject-error' : undefined}
                         className={`text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                           errors.subject ? 'border-red-500' : ''
                         }`}
                         placeholder="Message subject"
-                        aria-label="Message subject"
-                        aria-invalid={!!errors.subject}
-                        aria-describedby={errors.subject ? 'subject-error' : undefined}
                       />
                       {errors.subject && (
-                        <p id="subject-error" className="text-red-500 text-xs mt-1">
+                        <p id="subject-error" className="text-red-500 text-xs mt-1" role="alert">
                           {errors.subject}
                         </p>
                       )}
@@ -316,16 +345,16 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         aria-required="true"
+                        aria-label="Your message"
+                        aria-invalid={!!errors.message}
+                        aria-describedby={errors.message ? 'message-error' : undefined}
                         className={`text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                           errors.message ? 'border-red-500' : ''
                         }`}
                         placeholder="Your message"
-                        aria-label="Your message"
-                        aria-invalid={!!errors.message}
-                        aria-describedby={errors.message ? 'message-error' : undefined}
                       />
                       {errors.message && (
-                        <p id="message-error" className="text-red-500 text-xs mt-1">
+                        <p id="message-error" className="text-red-500 text-xs mt-1" role="alert">
                           {errors.message}
                         </p>
                       )}
@@ -422,18 +451,22 @@ export default function Contact() {
 
               <ScrollAnimation type="scale-up" delay={0.5}>
                 <div className="mt-2 sm:mt-4 overflow-hidden rounded-lg transform transition-all duration-500 hover:shadow-lg">
+                  {isMapLoading && (
+                    <div className="w-full h-[200px] sm:h-[250px] bg-muted animate-pulse rounded-lg" />
+                  )}
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224356.9006163!2d77.2035977!3d28.5269961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a43173357b%3A0x37ffce30c87cc03f!2sNoida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1710159123456!5m2!1sen!2sin"
                     width="100%"
                     height="200"
-                    style={{ border: 0, borderRadius: "0.5rem" }}
+                    style={{ border: 0, borderRadius: "0.5rem", display: isMapLoading ? 'none' : 'block' }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     className="sm:h-[250px] transition-transform duration-700 hover:scale-105 origin-center"
                     title="Map showing Noida, India"
                     aria-label="Google Maps location of Noida, India"
-                  ></iframe>
+                    onLoad={() => setIsMapLoading(false)}
+                  />
                 </div>
               </ScrollAnimation>
             </div>
