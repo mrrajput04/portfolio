@@ -36,7 +36,7 @@ export default function Hero() {
       }
     }
   }, [])
-  
+
   useEffect(() => {
     if (typedText.length < fullText.length) {
       const timeout = setTimeout(() => {

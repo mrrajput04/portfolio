@@ -10,6 +10,7 @@ import {
   Layers,
 } from "lucide-react";
 import ScrollAnimation, { StaggerGroup, StaggerItem } from "@/components/ui/scroll-animation";
+// import SkillsVisualization from "./skills-visualization";
 
 export default function Skills() {
   const skillCategories = [
@@ -46,12 +47,24 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-12 sm:py-16 px-4 md:px-6">
+    <section id="skills" className="py-12 sm:py-16 px-4 md:px-6 bg-muted/50">
       <div className="container mx-auto max-w-5xl">
-        <ScrollAnimation type="fade-up" className="mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center">
-            Skills
+        <ScrollAnimation type="fade-up">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">
+            Skills & Expertise
           </h2>
+        </ScrollAnimation>
+
+        {/* Commented out Skills Visualization
+        <ScrollAnimation type="fade-up" delay={0.2}>
+          <SkillsVisualization />
+        </ScrollAnimation>
+        */}
+
+        <ScrollAnimation type="fade-up" className="mt-8 sm:mt-12">
+          <h3 className="text-xl sm:text-2xl font-semibold text-center mb-4 sm:mb-6">
+            Skill Categories
+          </h3>
         </ScrollAnimation>
         
         <StaggerGroup threshold={0.1} rootMargin="0px 0px -50px 0px" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
