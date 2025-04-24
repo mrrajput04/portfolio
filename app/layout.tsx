@@ -4,6 +4,8 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
+import ScrollProgress from "@/components/scroll-progress"
+import FloatingNav from "@/components/floating-nav"
 import { generateStructuredData, generatePersonSchema, generatePortfolioSchema } from '@/components/structured-data'
 
 const inter = Inter({ subsets: ["latin"] })
@@ -50,8 +52,10 @@ export default function RootLayout({
       </head>
       <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ScrollProgress />
           <Navbar />
           {children}
+          <FloatingNav />
         </ThemeProvider>
       </body>
     </html>
