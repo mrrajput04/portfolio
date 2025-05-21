@@ -8,6 +8,7 @@ import ScrollProgress from "@/components/scroll-progress"
 import FloatingNav from "@/components/floating-nav"
 import { generateStructuredData, generatePersonSchema, generatePortfolioSchema } from '@/components/structured-data'
 import { generateToken } from "@/lib/csrf"
+import { applyFingerprintProtection } from '@/lib/fingerprint-protection'
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -29,6 +30,11 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode
 }) {
+	// Apply fingerprint protection on client side
+	if (typeof window !== 'undefined') {
+		applyFingerprintProtection()
+	}
+
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>

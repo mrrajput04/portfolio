@@ -1,0 +1,14 @@
+{
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": ">=1.0.0",
+      "automerge": true
+    }
+  ],
+  "schedule": ["every weekend"],
+  "groupName": "all dependencies",
+  "separateMajorMinor": false,
+  "groupSlug": "all"
+}
