@@ -5,12 +5,35 @@ import { Badge } from "@/components/ui/badge"
 import { Briefcase, GraduationCap } from "lucide-react"
 import ScrollAnimation, { StaggerGroup, StaggerItem } from "@/components/ui/scroll-animation"
 
+/**
+ * @typedef {Object} WorkExperience
+ * @property {string} title - Job title
+ * @property {string} company - Company name
+ * @property {string} location - Job location
+ * @property {string} period - Employment period
+ * @property {string[]} responsibilities - Array of job responsibilities
+ */
+
+/**
+ * @typedef {Object} Education
+ * @property {string} degree - Degree name
+ * @property {string} institution - Institution name
+ * @property {string} period - Study period
+ */
+
+/**
+ * Experience section component that displays work experience and education
+ * Includes animated cards for both work history and educational background
+ * 
+ * @component
+ * @returns {JSX.Element} A section containing work experience and education details
+ */
 export default function Experience() {
 	const workExperience = [
 		{
 			title: "Full Stack Developer",
 			company: "Excellence Technologies",
-			location: "Noida, India",
+			location: "Chandigarh, India",
 			period: "February 2023 – March 2025",
 			responsibilities: [
 				"Developed and maintained backend solutions using Node.js and Express.js.",

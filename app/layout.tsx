@@ -7,58 +7,97 @@ import Navbar from "@/components/navbar"
 import ScrollProgress from "@/components/scroll-progress"
 import FloatingNav from "@/components/floating-nav"
 import { generateStructuredData, generatePersonSchema, generatePortfolioSchema } from '@/components/structured-data'
+import { generateToken } from "@/lib/csrf"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  ...generateStructuredData(),
-  manifest: undefined,
-  icons: {
-    icon: '/favicon.ico',
-  },
-}
+/**
+ * @typedef {Object} RootLayoutProps
+ * @property {React.ReactNode} children - The child components to be rendered within the layout
+ */
 
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 5,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
-}
-
+/**
+ * Root layout component that wraps the entire application
+ * Provides theme support, navigation, and global UI elements
+ * 
+ * @component
+ * @param {RootLayoutProps} props - Component properties
+ * @returns {JSX.Element} The root layout component with theme provider and navigation
+ */
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode
+	children: React.ReactNode
 }) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(generatePersonSchema()),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(generatePortfolioSchema()),
-          }}
-        />
-      </head>
-      <body className={inter.className} suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ScrollProgress />
-          <Navbar />
-          {children}
-          <FloatingNav />
-        </ThemeProvider>
-      </body>
-    </html>
-  )
+	return (
+		<html lang="en" suppressHydrationWarning>
+			<head>
+				<link rel="icon" href="/favicon.ico" sizes="any" />
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(generatePersonSchema()),
+					}}
+				/>
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(generatePortfolioSchema()),
+					}}
+				/>
+				{/* Add CSRF meta tag */}
+				<meta name="csrf-token" content={generateToken()} />
+			</head>
+			<body className={inter.className} suppressHydrationWarning>
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+					<ScrollProgress />
+					<Navbar />
+					{children}
+					<FloatingNav />
+				</ThemeProvider>
+			</body>
+		</html>
+	)
+}
+
+/**
+ * @constant
+ * @type {Metadata}
+ * @description Metadata configuration for SEO and Open Graph
+ */
+export const metadata: Metadata = {
+	...generateStructuredData(),
+	manifest: undefined,
+	icons: {
+		icon: '/favicon.ico',
+	},
+	// Add these SEO-related metadata
+	openGraph: {
+		type: 'website',
+		title: 'Divesh Kumar - Backend Developer Portfolio',
+		description: 'Professional portfolio showcasing backend development projects and skills',
+		images: ['/og-image.jpg'],
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: 'Divesh Kumar - Backend Developer Portfolio',
+		description: 'Professional portfolio showcasing backend development projects and skills',
+		images: ['/og-image.jpg'],
+	},
+}
+
+/**
+ * @constant
+ * @type {Viewport}
+ * @description Viewport configuration for responsive design
+ */
+export const viewport: Viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	maximumScale: 5,
+	themeColor: [
+		{ media: '(prefers-color-scheme: light)', color: 'white' },
+		{ media: '(prefers-color-scheme: dark)', color: 'black' },
+	],
 }
 
