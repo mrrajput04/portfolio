@@ -6,6 +6,22 @@ import { Button } from "@/components/ui/button"
 import { ExternalLink } from "lucide-react"
 import ScrollAnimation, { StaggerGroup, StaggerItem } from "@/components/ui/scroll-animation"
 
+/**
+ * @typedef {Object} Project
+ * @property {string} title - The title of the project
+ * @property {string} client - The client name or location
+ * @property {string} period - The project duration period
+ * @property {string} description - Detailed description of the project
+ * @property {string[]} technologies - Array of technologies used in the project
+ */
+
+/**
+ * Projects section component that displays a grid of project cards
+ * Each card shows project details including title, client, period, description, and technologies used
+ * 
+ * @component
+ * @returns {JSX.Element} A section containing a grid of project cards with animations
+ */
 export default function Projects() {
 	const projects = [
 		{
