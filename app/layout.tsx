@@ -78,12 +78,33 @@ export const metadata: Metadata = {
 		icon: '/icons/laptop_favicon.ico',
 		shortcut: '/icons/laptop_favicon.ico',
 	},
-	// Add these SEO-related metadata
+	// Enhanced meta description and keywords
+	title: 'Divesh Kumar - Backend Developer Portfolio',
+	description: "Experienced Backend Developer specializing in Node.js, TypeScript, and cloud architecture. Portfolio showcasing innovative projects, system design expertise, and scalable solutions for modern web applications.",
+	keywords: [
+		"backend development",
+		"Node.js developer",
+		"TypeScript expert",
+		"cloud architecture",
+		"system design",
+		"API development",
+		"database optimization",
+		"microservices",
+		"web development",
+		"software engineering",
+		"full-stack development",
+		"DevOps",
+		"portfolio",
+		"Divesh Kumar"
+	],
+	// Existing OpenGraph and Twitter metadata
 	openGraph: {
 		type: 'website',
 		title: 'Divesh Kumar - Backend Developer Portfolio',
 		description: 'Professional portfolio showcasing backend development projects and skills',
 		images: ['/og-image.jpg'],
+		locale: 'en_US',
+		siteName: 'Divesh Kumar Portfolio'
 	},
 	twitter: {
 		card: 'summary_large_image',
