@@ -31,6 +31,7 @@
     --chart-4: 283 39% 43%;
     --chart-5: 326 100% 54%;
     --radius: 0.5rem;
+	  --scroll-margin-top: 80px;
     --theme-transition: background-color 0.3s ease, color 0.3s ease;
   }
 
@@ -62,90 +63,101 @@
     --chart-4: 283 39% 63%;
     --chart-5: 326 100% 74%;
   }
-}
 
-@layer base {
-  * {
-    @apply border-border;
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Add smooth section transitions */
+  section {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   }
   body {
     @apply bg-background text-foreground;
     transition: var(--theme-transition);
   }
-  }
 
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
+  /* Enhanced stagger animation with smoother transitions */
+  .stagger-animation > * {
     opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+
+  /* Add intersection observer animations */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    visibility: hidden;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0.6s;
+    will-change: opacity, transform, visibility;
+  }
+
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  /* Smooth theme transition */
+  body {
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+
+  /* Enhanced scroll margin for better section navigation */
+  section[id] {
+    scroll-margin-top: var(--scroll-margin-top);
+  }
+
+  /* Smooth image transitions */
+  img {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  /* Enhanced link hover effects */
+  a {
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+
+  /* Button transitions */
+  button {
+    transition: all 0.2s ease-in-out;
   }
 }
 
-.animate-blink {
-  animation: blink 1s infinite;
-}
-
-@layer base {
-  .dark .bg-muted\/50 {
-    background-color: hsl(var(--muted) / 0.3);
-  }
-
-  .dark iframe {
-    filter: invert(0.85) hue-rotate(180deg);
-  }
-}
-
-@keyframes fadeIn {
+/* Add keyframe animations for section transitions */
+@keyframes fadeInUp {
   from {
     opacity: 0;
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translate3d(0, 20px, 0);
-    opacity: 0;
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes scaleIn {
   from {
-    transform: scale3d(0.9, 0.9, 1);
     opacity: 0;
+    transform: scale(0.95);
   }
   to {
-    transform: scale3d(1, 1, 1);
     opacity: 1;
+    transform: scale(1);
   }
 }
 
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(var(--primary), 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(var(--primary), 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(var(--primary), 0);
-  }
+/* Add animation classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-in-out forwards;
-  will-change: opacity;
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
 }
-
 .animate-slide-up {
   animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: transform, opacity;
@@ -153,15 +165,16 @@
   transform: translate3d(0, 20px, 0);
 }
 
-.animate-scale-in {
-  animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+/* Add intersection observer animations */
+.scroll-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.animate-pulse-subtle {
-  animation: pulse 2s infinite;
+.scroll-animation.in-view {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .stagger-animation > * {
