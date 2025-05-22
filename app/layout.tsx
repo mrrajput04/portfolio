@@ -39,7 +39,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>
-				<link rel="icon" href="/favicon.ico" sizes="any" />
+				<link rel="icon" href="/icons/laptop_favicon.ico" sizes="any" />
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{
@@ -77,7 +77,8 @@ export const metadata: Metadata = {
 	...generateStructuredData(),
 	manifest: undefined,
 	icons: {
-		icon: '/favicon.ico',
+		icon: '/icons/laptop_favicon.ico',
+		shortcut: '/icons/laptop_favicon.ico',
 	},
 	// Add meta description and keywords
 	description: "Backend Developer Portfolio of Divesh Kumar - Showcasing expertise in backend development, system architecture, and cloud solutions",
