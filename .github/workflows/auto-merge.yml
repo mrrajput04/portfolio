@@ -16,11 +16,7 @@ jobs:
           sudo apt-get install -y gh
 
       - name: Authenticate GitHub CLI
-        run: gh auth setup-git
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "${{ secrets.PERSONAL_ACCESS_TOKEN }}" | gh auth login --with-token
 
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --merge "${{ github.event.pull_request.html_url }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
