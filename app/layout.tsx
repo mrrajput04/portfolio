@@ -9,6 +9,7 @@ import FloatingNav from "@/components/floating-nav"
 import { generateStructuredData, generatePersonSchema, generatePortfolioSchema } from '@/components/structured-data'
 import { generateToken } from "@/lib/csrf"
 import { applyFingerprintProtection } from '@/lib/fingerprint-protection'
+import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -60,6 +61,7 @@ export default function RootLayout({
 					<Navbar />
 					{children}
 					<FloatingNav />
+					<Toaster />
 				</ThemeProvider>
 			</body>
 		</html>
@@ -78,6 +80,7 @@ export const metadata: Metadata = {
 		icon: '/icons/laptop_favicon.ico',
 		shortcut: '/icons/laptop_favicon.ico',
 	},
+
 	// Enhanced meta description and keywords
 	title: 'Divesh Kumar - Backend Developer Portfolio',
 	description: "Experienced Backend Developer specializing in Node.js, TypeScript, and cloud architecture. Portfolio showcasing innovative projects, system design expertise, and scalable solutions for modern web applications.",
@@ -98,6 +101,23 @@ export const metadata: Metadata = {
 		"Divesh Kumar"
 	],
 	// Existing OpenGraph and Twitter metadata
+
+	// Add meta description and keywords
+	description: "Backend Developer Portfolio of Divesh Kumar - Showcasing expertise in backend development, system architecture, and cloud solutions",
+	keywords: [
+		"backend developer",
+		"software engineer",
+		"full-stack developer",
+		"Node.js",
+		"TypeScript",
+		"cloud architecture",
+		"API development",
+		"system design",
+		"portfolio",
+		"Divesh Kumar"
+	],
+	// Enhance OpenGraph and Twitter cards
+
 	openGraph: {
 		type: 'website',
 		title: 'Divesh Kumar - Backend Developer Portfolio',
@@ -111,7 +131,24 @@ export const metadata: Metadata = {
 		title: 'Divesh Kumar - Backend Developer Portfolio',
 		description: 'Professional portfolio showcasing backend development projects and skills',
 		images: ['/og-image.jpg'],
+		creator: '@rajpoot_divesh'
 	},
+	// Add additional metadata
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			'max-video-preview': -1,
+			'max-image-preview': 'large',
+			'max-snippet': -1,
+		},
+	},
+	verification: {
+		google: 'bvP_Z3gRWN9LsmsDI93DWLFjVcdllXUb6PdUz8hgu44', // Replace with your verification code
+	},
+	authors: [{ name: 'Divesh Kumar' }],
 }
 
 /**
