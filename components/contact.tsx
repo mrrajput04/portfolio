@@ -156,7 +156,7 @@ export default function Contact() {
 			toast({
 				title: "Please wait",
 				description: `You can submit another message in ${remainingTime} seconds.`,
-				variant: "destructive",
+				variant: "default",
 			})
 			return
 		}
@@ -165,7 +165,7 @@ export default function Contact() {
 			toast({
 				title: "Validation Error",
 				description: "Please check the form for errors.",
-				variant: "destructive",
+				variant: "default",
 			})
 			return
 		}
@@ -223,19 +223,19 @@ export default function Contact() {
 				toast({
 					title: "Authentication Error",
 					description: "Please check your Gmail service configuration in EmailJS.",
-					variant: "destructive",
+					variant: "default",
 				})
 			} else if (error.message === 'EmailJS configuration is missing') {
 				toast({
 					title: "Configuration Error",
 					description: "Email service is not properly configured. Please contact the site administrator.",
-					variant: "destructive",
+					variant: "default",
 				})
 			} else {
 				toast({
 					title: "Error",
 					description: "Failed to send message. Please try again later.",
-					variant: "destructive",
+					variant: "default",
 				})
 			}
 		} finally {
