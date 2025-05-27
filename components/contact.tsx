@@ -286,14 +286,14 @@ export default function Contact() {
 										onSubmit={handleSubmit}
 										className="space-y-3 sm:space-y-4"
 										aria-label="Contact form"
+										autoComplete="on"
 									>
 										<div className="grid gap-1.5 sm:gap-2">
-											<Label htmlFor="name" className="text-xs sm:text-sm">
-												Name
-											</Label>
+											<Label htmlFor="name" className="text-xs sm:text-sm">Name</Label>
 											<Input
 												id="name"
 												name="name"
+												autoComplete="on"
 												value={formData.name}
 												onChange={handleChange}
 												required
@@ -301,24 +301,21 @@ export default function Contact() {
 												aria-label="Your name"
 												aria-invalid={!!errors.name}
 												aria-describedby={errors.name ? 'name-error' : undefined}
-												className={`text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${errors.name ? 'border-red-500' : ''
-													}`}
+												className={`text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${errors.name ? 'border-red-500' : ''}`}
 												placeholder="Your name"
 											/>
 											{errors.name && (
-												<p id="name-error" className="text-red-500 text-xs mt-1" role="alert">
-													{errors.name}
-												</p>
+												<p id="name-error" className="text-red-500 text-xs mt-1" role="alert">{errors.name}</p>
 											)}
 										</div>
+
 										<div className="grid gap-1.5 sm:gap-2">
-											<Label htmlFor="email" className="text-xs sm:text-sm">
-												Email
-											</Label>
+											<Label htmlFor="email" className="text-xs sm:text-sm">Email</Label>
 											<Input
 												id="email"
 												name="email"
 												type="email"
+												autoComplete="email"
 												value={formData.email}
 												onChange={handleChange}
 												required
@@ -326,23 +323,20 @@ export default function Contact() {
 												aria-label="Your email address"
 												aria-invalid={!!errors.email}
 												aria-describedby={errors.email ? 'email-error' : undefined}
-												className={`text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${errors.email ? 'border-red-500' : ''
-													}`}
+												className={`text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${errors.email ? 'border-red-500' : ''}`}
 												placeholder="Your email address"
 											/>
 											{errors.email && (
-												<p id="email-error" className="text-red-500 text-xs mt-1" role="alert">
-													{errors.email}
-												</p>
+												<p id="email-error" className="text-red-500 text-xs mt-1" role="alert">{errors.email}</p>
 											)}
 										</div>
+
 										<div className="grid gap-1.5 sm:gap-2">
-											<Label htmlFor="subject" className="text-xs sm:text-sm">
-												Subject
-											</Label>
+											<Label htmlFor="subject" className="text-xs sm:text-sm">Subject</Label>
 											<Input
 												id="subject"
 												name="subject"
+												autoComplete="off"
 												value={formData.subject}
 												onChange={handleChange}
 												required
@@ -350,23 +344,20 @@ export default function Contact() {
 												aria-label="Message subject"
 												aria-invalid={!!errors.subject}
 												aria-describedby={errors.subject ? 'subject-error' : undefined}
-												className={`text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${errors.subject ? 'border-red-500' : ''
-													}`}
+												className={`text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${errors.subject ? 'border-red-500' : ''}`}
 												placeholder="Message subject"
 											/>
 											{errors.subject && (
-												<p id="subject-error" className="text-red-500 text-xs mt-1" role="alert">
-													{errors.subject}
-												</p>
+												<p id="subject-error" className="text-red-500 text-xs mt-1" role="alert">{errors.subject}</p>
 											)}
 										</div>
+
 										<div className="grid gap-1.5 sm:gap-2">
-											<Label htmlFor="message" className="text-xs sm:text-sm">
-												Message
-											</Label>
+											<Label htmlFor="message" className="text-xs sm:text-sm">Message</Label>
 											<Textarea
 												id="message"
 												name="message"
+												autoComplete="off"
 												rows={4}
 												value={formData.message}
 												onChange={handleChange}
@@ -375,16 +366,14 @@ export default function Contact() {
 												aria-label="Your message"
 												aria-invalid={!!errors.message}
 												aria-describedby={errors.message ? 'message-error' : undefined}
-												className={`text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${errors.message ? 'border-red-500' : ''
-													}`}
+												className={`text-sm focus:ring-2 focus:ring-primary/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${errors.message ? 'border-red-500' : ''}`}
 												placeholder="Your message"
 											/>
 											{errors.message && (
-												<p id="message-error" className="text-red-500 text-xs mt-1" role="alert">
-													{errors.message}
-												</p>
+												<p id="message-error" className="text-red-500 text-xs mt-1" role="alert">{errors.message}</p>
 											)}
 										</div>
+
 										<CardFooter className="p-0">
 											<Button
 												type="submit"
@@ -481,10 +470,10 @@ export default function Contact() {
 										<div className="w-full h-[200px] sm:h-[250px] bg-muted animate-pulse rounded-lg" />
 									)}
 									<div
-										className={`w-full h-[200px] sm:h-[250px] ${isMapLoading ? 'hidden' : 'block'}`}
+										className={`w-full h-[200px] sm:h-[250px]`}
 									>
 										<iframe
-											src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224356.9006163!2d77.2035977!3d28.5269961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a43173357b%3A0x37ffce30c87cc03f!2sChandigarh%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1710159123456!5m2!1sen!2sin"
+											src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d109744.05905969579!2d76.68931936897911!3d30.735210199999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed0be66ec96b%3A0xa5ff67f9527319fe!2sChandigarh!5e0!3m2!1sen!2sin!4v1701051242021!5m2!1sen!2sin"
 											width="100%"
 											height="100%"
 											style={{
@@ -500,7 +489,7 @@ export default function Contact() {
 											onLoad={() => {
 												setTimeout(() => {
 													setIsMapLoading(false)
-												}, 1000) // Increased delay for better loading
+												}, 1000)
 											}}
 										/>
 									</div>

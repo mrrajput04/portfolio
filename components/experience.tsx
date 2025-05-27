@@ -31,10 +31,10 @@ import ScrollAnimation, { StaggerGroup, StaggerItem } from "@/components/ui/scro
 export default function Experience() {
 	const workExperience = [
 		{
-			title: "Full Stack Developer",
-			company: "Excellence Technologies",
-			location: "Chandigarh, India",
-			period: "February 2023 – March 2025",
+			title: "Software Developer (SDE-2)",
+			company: "DSV Atrium labs",
+			location: "Punchkula, India",
+			period: "May 2025 – Present",
 			responsibilities: [
 				"Developed and maintained backend solutions using Node.js and Express.js.",
 				"Utilized Git for efficient collaboration and version control among team members.",
@@ -44,10 +44,10 @@ export default function Experience() {
 			],
 		},
 		{
-			title: "Software Developer",
-			company: "DSV Atrium labs",
-			location: "Punchkula, India",
-			period: "May 2025 – Present",
+			title: "Full Stack Developer (SDE-1)",
+			company: "Excellence Technologies",
+			location: "Chandigarh, India",
+			period: "February 2023 – March 2025",
 			responsibilities: [
 				"Developed and maintained backend solutions using Node.js and Express.js.",
 				"Utilized Git for efficient collaboration and version control among team members.",
