@@ -100,22 +100,7 @@ export const metadata: Metadata = {
 		"portfolio",
 		"Divesh Kumar"
 	],
-	// Existing OpenGraph and Twitter metadata
 
-	// Add meta description and keywords
-	description: "Backend Developer Portfolio of Divesh Kumar - Showcasing expertise in backend development, system architecture, and cloud solutions",
-	keywords: [
-		"backend developer",
-		"software engineer",
-		"full-stack developer",
-		"Node.js",
-		"TypeScript",
-		"cloud architecture",
-		"API development",
-		"system design",
-		"portfolio",
-		"Divesh Kumar"
-	],
 	// Enhance OpenGraph and Twitter cards
 
 	openGraph: {
