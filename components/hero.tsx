@@ -117,8 +117,7 @@ export default function Hero() {
           <span className="animate-blink">|</span>
         </h2>
         <p className={`text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto ${isLoaded ? 'animate-reveal-right' : 'opacity-0'}`} style={{ animationDelay: '1.0s' }}>
-          Motivated and detail-oriented Software Developer with experience in full stack development. Proficient in
-          Node.js, Express.js, and Nest.js.
+          Full Stack Developer passionate about building robust backend systems with Node.js, Express.js, and Nest.js.
         </p>
         <div className={`flex flex-wrap justify-center gap-3 sm:gap-4 pt-4 stagger-animation ${isLoaded ? '' : 'opacity-0'}`}>
           <Button asChild size="sm" className="sm:text-base sm:h-10 animate-float" style={{ animationDelay: '0.1s' }}>
