@@ -60,14 +60,14 @@ export default function Experience() {
 
 	const education = [
 		{
-			degree: "Bachelor of Computer Applications (BCA)",
-			institution: "MJP Rohilkhand University, Bareilly",
-			period: "July 2019 – June 2022",
-		},
-		{
 			degree: "Master of Computer Applications (MCA)",
 			institution: "Bhagwant Global University, Kotdwara",
 			period: "July 2023 – June 2025",
+		},
+		{
+			degree: "Bachelor of Computer Applications (BCA)",
+			institution: "MJP Rohilkhand University, Bareilly",
+			period: "July 2019 – Dec 2022",
 		},
 	]
 
