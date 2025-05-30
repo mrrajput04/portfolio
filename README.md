@@ -1,4 +1,4 @@
-# Divesh Kumar's Portfolio
+# Personal Portfolio
 
 A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS, showcasing my professional experience, projects, and skills as a Backend Developer.
 
