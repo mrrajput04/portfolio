@@ -34,7 +34,7 @@ export default function Projects() {
 		},
 		{
 			title: "Saarthi AI",
-			client: "Banglore",
+			client: "India",
 			period: "November 2023 – April 2024",
 			description:
 				"Built scalable backend microservices for Saarthi.ai’s multilingual conversational AI platform using Node.js, MongoDB, Docker, NATS, and Dragonfly. Developed and integrated real-time APIs to support voice and chat channels, enhancing seamless customer interactions. Optimized system performance and reliability through efficient caching and event-driven architecture. Implemented centralized monitoring and logging using Grafana and Loki to ensure high availability and quick issue resolution.",
