@@ -16,8 +16,12 @@ export default function CookieConsent() {
 	}, []);
 
 	const handleAccept = () => {
-		// Set consent in local storage and hide the banner
 		localStorage.setItem('cookie_consent', 'accepted');
+		setIsVisible(false);
+	};
+
+	const handleDecline = () => {
+		localStorage.setItem('cookie_consent', 'declined');
 		setIsVisible(false);
 	};
 
@@ -32,9 +36,14 @@ export default function CookieConsent() {
 					<p className="text-sm text-muted-foreground">
 						We use cookies to ensure you get the best experience on our website.
 					</p>
-					<Button onClick={handleAccept} size="sm">
-						Accept
-					</Button>
+					<div className="flex gap-2">
+						<Button onClick={handleAccept} size="sm">
+							Accept
+						</Button>
+						<Button onClick={handleDecline} size="sm" variant="outline">
+							Decline
+						</Button>
+					</div>
 				</CardContent>
 			</Card>
 		</div>
