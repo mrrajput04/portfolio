@@ -10,6 +10,7 @@ import { generateStructuredData, generatePersonSchema, generatePortfolioSchema }
 import { generateToken } from "@/lib/csrf"
 import { applyFingerprintProtection } from '@/lib/fingerprint-protection'
 import { Toaster } from "@/components/ui/toaster"
+import CookieConsent from "@/components/cookie-consent"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -62,6 +63,7 @@ export default function RootLayout({
 					{children}
 					<FloatingNav />
 					<Toaster />
+					<CookieConsent />
 				</ThemeProvider>
 			</body>
 		</html>
