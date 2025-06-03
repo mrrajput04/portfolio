@@ -79,7 +79,6 @@
 
   /* Enhanced stagger animation with smoother transitions */
   .stagger-animation > * {
-    opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
@@ -178,7 +177,6 @@
 }
 
 .stagger-animation > * {
-  opacity: 0;
   will-change: transform, opacity;
   backface-visibility: hidden;
 }
@@ -400,7 +398,6 @@
   .animate-slide-up,
   .animate-scale-in,
   .animate-pulse-subtle,
-  .stagger-animation > *,
   .animate-float {
     animation: none !important;
     transform: none !important;
