@@ -95,14 +95,14 @@ export default function Projects() {
 									</div>
 								</CardContent>
 								<CardFooter className="p-4 sm:p-6 pt-2 sm:pt-3">
-									<Button
+{/* 									<Button
 										variant="ghost"
 										size="sm"
 										className="ml-auto text-xs sm:text-sm hover:scale-105 transition-transform"
 									>
 										<ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
 										View Details
-									</Button>
+									</Button> */}
 								</CardFooter>
 							</Card>
 						</StaggerItem>
