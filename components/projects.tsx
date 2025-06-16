@@ -25,9 +25,17 @@ import ScrollAnimation, { StaggerGroup, StaggerItem } from "@/components/ui/scro
 export default function Projects() {
 	const projects = [
 		{
+			title: "Atrium",
+			client: "India",
+			period: "May 2025 – Present",
+			description:
+				"Currently working on a gamified mobile application aimed at enhancing medical knowledge through interactive case-based learning. The app is developed using Flutter for the frontend, ensuring a smooth and responsive cross-platform experience. On the backend, we're leveraging Node.js with Express, MySQL, and AWS services to provide a robust, scalable, and secure infrastructure. The system includes a user-friendly login mechanism and allows users to attempt clinical cases that challenge and grow their diagnostic skills.",
+			technologies: ["Node.js", "Express.js", "MySQL", "Docker"],
+		},
+		{
 			title: "Pratham Digital",
 			client: "India",
-			period: "May 2024 – Present",
+			period: "January 2024 – April 2025",
 			description:
 				"Developed a user-friendly web application facilitating user login and access to personalized Power BI reports. Implemented an admin portal enabling efficient management of user assignments, report access, and user activation/deactivation. Ensured seamless user experience through intuitive interface design and responsive web development techniques. Leveraged MySQL databases to streamline data storage and retrieval, ensuring operational efficiency.",
 			technologies: ["Node.js", "Express.js", "MySQL", "Power BI"],
@@ -35,18 +43,10 @@ export default function Projects() {
 		{
 			title: "Saarthi AI",
 			client: "India",
-			period: "November 2023 – April 2024",
+			period: "July 2023 – December 2023",
 			description:
 				"Built scalable backend microservices for Saarthi.ai’s multilingual conversational AI platform using Node.js, MongoDB, Docker, NATS, and Dragonfly. Developed and integrated real-time APIs to support voice and chat channels, enhancing seamless customer interactions. Optimized system performance and reliability through efficient caching and event-driven architecture. Implemented centralized monitoring and logging using Grafana and Loki to ensure high availability and quick issue resolution.",
 			technologies: ["Node.js", "Express.js", "MongoDB", "Dragonfly", "Natstream", "Grafana", "Docker"],
-		},
-		{
-			title: "Koing AI Web Application",
-			client: "South Korea",
-			period: "July 2023 – October 2023",
-			description:
-				"Built a web application with Nest.js, TypeORM, and MySQL, focusing on CRUD API development. Key objectives include creating a RESTful API, User authentication, version control with Git/GitHub, thorough documentation, and robust testing. Implemented user authentication and ensured secure data management.",
-			technologies: ["Nest.js", "TypeORM", "MySQL", "RESTful API"],
 		},
 		{
 			title: "Super Exchange Betting Application",
@@ -95,7 +95,7 @@ export default function Projects() {
 									</div>
 								</CardContent>
 								<CardFooter className="p-4 sm:p-6 pt-2 sm:pt-3">
-{/* 									<Button
+									{/* 									<Button
 										variant="ghost"
 										size="sm"
 										className="ml-auto text-xs sm:text-sm hover:scale-105 transition-transform"
