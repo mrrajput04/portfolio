@@ -41,15 +41,13 @@ portfolio/
 └── styles/            # Global styles
 
 This is my portfolio
-
+```bash
 ## Getting Started
 
 1. **Clone the repository**
-   ```bash
    git clone https://github.com/mrrajput04/portfolio.git
 
 2.  Install dependencies
-	```bash
 	npm install
 
 3. Set up environment variables
@@ -59,7 +57,7 @@ NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
 4. Run the development server:
-```bash
+
 npm run dev
 
 5. Open http://localhost:3000
