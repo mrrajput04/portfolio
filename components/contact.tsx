@@ -258,7 +258,7 @@ export default function Contact() {
 							<CardHeader className="p-4 sm:p-6 pb-2 sm:pb-3">
 								<CardTitle className="text-lg sm:text-xl">Get In Touch</CardTitle>
 								<CardDescription className="text-xs sm:text-sm">
-									Fill out the form and I'll get back to you as soon as possible.
+									Let's connect and build something great together!.
 								</CardDescription>
 								{/* Add progress bar */}
 								<div className="mt-2 h-1 bg-muted rounded-full overflow-hidden">
