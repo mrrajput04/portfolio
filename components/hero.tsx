@@ -7,7 +7,7 @@ import Link from "next/link"
 
 export default function Hero() {
 	const [typedText, setTypedText] = useState("")
-	const fullText = "Backend Developer"
+	const fullText = "Full Stack Developer"
 	const [isLoaded, setIsLoaded] = useState(false)
 	const [scrollY, setScrollY] = useState(0)
 	const parallaxRef = useRef<HTMLDivElement>(null)

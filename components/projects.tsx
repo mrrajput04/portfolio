@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink } from "lucide-react"
 import ScrollAnimation, { StaggerGroup, StaggerItem } from "@/components/ui/scroll-animation"
+import Link from "next/link"
 
 /**
  * @typedef {Object} Project
@@ -31,6 +32,7 @@ export default function Projects() {
 			description:
 				"Currently working on a gamified mobile application aimed at enhancing medical knowledge through interactive case-based learning. The app is developed using Flutter for the frontend, ensuring a smooth and responsive cross-platform experience. On the backend, we're leveraging Node.js with Express, MySQL, and AWS services to provide a robust, scalable, and secure infrastructure. The system includes a user-friendly login mechanism and allows users to attempt clinical cases that challenge and grow their diagnostic skills.",
 			technologies: ["Node.js", "Express.js", "MySQL", "Docker"],
+			link: "https://www.atrium.clinic"
 		},
 		{
 			title: "Pratham Digital",
@@ -39,6 +41,7 @@ export default function Projects() {
 			description:
 				"Developed a user-friendly web application facilitating user login and access to personalized Power BI reports. Implemented an admin portal enabling efficient management of user assignments, report access, and user activation/deactivation. Ensured seamless user experience through intuitive interface design and responsive web development techniques. Leveraged MySQL databases to streamline data storage and retrieval, ensuring operational efficiency.",
 			technologies: ["Node.js", "Express.js", "MySQL", "Power BI"],
+			link: "https://prathampunedigital.prathampune.org"
 		},
 		{
 			title: "Saarthi AI",
@@ -47,6 +50,7 @@ export default function Projects() {
 			description:
 				"Built scalable backend microservices for Saarthi.ai’s multilingual conversational AI platform using Node.js, MongoDB, Docker, NATS, and Dragonfly. Developed and integrated real-time APIs to support voice and chat channels, enhancing seamless customer interactions. Optimized system performance and reliability through efficient caching and event-driven architecture. Implemented centralized monitoring and logging using Grafana and Loki to ensure high availability and quick issue resolution.",
 			technologies: ["Node.js", "Express.js", "MongoDB", "Dragonfly", "Natstream", "Grafana", "Docker"],
+			link: "https://www.saarthi.ai"
 		},
 		{
 			title: "Super Exchange Betting Application",
@@ -55,6 +59,7 @@ export default function Projects() {
 			description:
 				"Designed and developed a high-performance betting platform using Node.js, Express.js, MongoDB, and WebSocket. The site effortlessly handles massive amounts of user data. This innovative platform provides a dynamic and engaging betting experience for users, all while ensuring efficient data management and real-time interactions. Focused on real-time data handling and scalability to manage large user bases.",
 			technologies: ["Node.js", "Express.js", "MongoDB", "WebSocket", "Git"],
+			link: "https://www.superexchangebetting.com"
 		},
 	]
 
@@ -95,14 +100,16 @@ export default function Projects() {
 									</div>
 								</CardContent>
 								<CardFooter className="p-4 sm:p-6 pt-2 sm:pt-3">
-									{/* 									<Button
-										variant="ghost"
-										size="sm"
-										className="ml-auto text-xs sm:text-sm hover:scale-105 transition-transform"
-									>
-										<ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
-										View Details
-									</Button> */}
+									<Link href={project.link} target="_blank" className="ml-auto hover:scale-105 transition-transform">
+										<Button
+											variant="ghost"
+											size="sm"
+											className="ml-auto text-xs sm:text-sm hover:scale-105 transition-transform"
+										>
+											<ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+											View Details
+										</Button>
+									</Link>
 								</CardFooter>
 							</Card>
 						</StaggerItem>

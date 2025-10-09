@@ -36,11 +36,11 @@ export default function Experience() {
 			location: "Punchkula, India",
 			period: "May 2025 – Present",
 			responsibilities: [
-				"Developed and maintained backend solutions using Node.js and Express.js.",
-				"Utilized Git for efficient collaboration and version control among team members.",
-				"Collaborated with cross-functional teams to meet project goals and deadlines.",
-				"Ensured the performance, quality, and responsiveness of applications.",
-				"Participated in code reviews and provided constructive feedback to peers.",
+				"Developed and maintained backend solutions for a medical gamification application using Node.js, Express.js, and MySQL database.",
+				"Architected and implemented AWS cloud services including Lambda functions, ECS, CloudWatch monitoring, Secrets Manager, SQS, and SES for scalable healthcare solutions.",
+				"Built interactive case-solving modules across multiple medical specializations, enabling healthcare professionals to enhance their knowledge through gamified learning experiences.",
+				"Collaborated with cross - functional teams using Git for version control and delivered high- quality code through comprehensive peer reviews.",
+				"Ensured optimal application performance, security, and responsiveness in a healthcare learning environment while managing sensitive medical educational content.",
 			],
 		},
 		{
@@ -49,11 +49,11 @@ export default function Experience() {
 			location: "Noida, India",
 			period: "February 2023 – April 2025",
 			responsibilities: [
-				"Developed and maintained backend solutions using Node.js and Express.js.",
-				"Utilized Git for efficient collaboration and version control among team members.",
-				"Collaborated with cross-functional teams to meet project goals and deadlines.",
-				"Ensured the performance, quality, and responsiveness of applications.",
-				"Participated in code reviews and provided constructive feedback to peers.",
+				"Developed and maintained full-stack solutions using Node.js, Express.js with MongoDB and MySQL databases for fintech and student management systems.",
+				"Deployed and managed applications on AWS(Lambda, EC2) and GCP Lambda with Docker containerization for scalable cloud infrastructure.",
+				"Built comprehensive student management system and interactive dashboard reports using Power BI for data visualization and business intelligence.",
+				"Collaborated with cross - functional teams using Git, GitHub, Jira, and Confluence for efficient project management and documentation.",
+				"Ensured high application performance, security, and reliability across fintech applications handling sensitive financial data and student information systems.",
 			],
 		},
 	]

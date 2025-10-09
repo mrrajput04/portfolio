@@ -21,16 +21,6 @@ export default function Skills() {
 			skills: ["JavaScript", "TypeScript", "Third Party Integration"],
 		},
 		{
-			title: "Frameworks",
-			icon: <Layers className="w-5 h-5 sm:w-6 sm:h-6" />,
-			skills: ["Node.js", "Express.js", "Nest.js"],
-		},
-		{
-			title: "Operating Systems",
-			icon: <Terminal className="w-5 h-5 sm:w-6 sm:h-6" />,
-			skills: ["Windows", "Linux"],
-		},
-		{
 			title: "Databases",
 			icon: <Database className="w-5 h-5 sm:w-6 sm:h-6" />,
 			skills: ["MongoDB", "MySQL", "PostgreSQL", "Redis"],
@@ -41,9 +31,19 @@ export default function Skills() {
 			skills: ["Git/Github", "VS-Code", "Nginx", "Docker"],
 		},
 		{
+			title: "Frameworks",
+			icon: <Layers className="w-5 h-5 sm:w-6 sm:h-6" />,
+			skills: ["Node.js", "Express.js", "Nest.js"],
+		},
+		{
+			title: "Operating Systems",
+			icon: <Terminal className="w-5 h-5 sm:w-6 sm:h-6" />,
+			skills: ["Windows", "Linux", "Mac OS"],
+		},
+		{
 			title: "Cloud",
 			icon: <Cloud className="w-5 h-5 sm:w-6 sm:h-6" />,
-			skills: ["AWS (S3, SNS, EC2, Lambda)", "GCP (Lambda Functions, VMs)"],
+			skills: ["AWS (S3, SNS, EC2, Lambda)", "GCP (Lambda Functions, VMs)", "CI/CD"],
 		},
 	];
 
@@ -62,11 +62,11 @@ export default function Skills() {
         </ScrollAnimation>
         */}
 
-				<SectionHover delay={0.2}>
+				{/* <SectionHover delay={0.2}>
 					<h3 className="text-xl sm:text-2xl font-semibold text-center mb-4 sm:mb-6">
 						Skill Categories
 					</h3>
-				</SectionHover>
+				</SectionHover> */}
 
 				<StaggerGroup threshold={0.1} rootMargin="0px 0px -50px 0px" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
 					{skillCategories.map((category, index) => (
