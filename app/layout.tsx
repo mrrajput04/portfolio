@@ -61,7 +61,7 @@ export default function RootLayout({
 					<ScrollProgress />
 					<Navbar />
 					{children}
-					<FloatingNav />
+					{/* <FloatingNav /> */}
 					<Toaster />
 					<CookieConsent />
 				</ThemeProvider>
