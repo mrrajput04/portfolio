@@ -44,7 +44,6 @@ export function generateStructuredData(): Metadata {
 				'max-snippet': -1,
 			},
 		},
-		viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
 	}
 }
 
